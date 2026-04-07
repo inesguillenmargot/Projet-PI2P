@@ -31,15 +31,22 @@ namespace NavigationBatiment
     public class Salle
     {
         public string Numero { get; set; }
+        public int NumeroLocal { get; set; }   // numéro sans l'étage (ex: 6 pour "106")
         public Position Position { get; set; }
 
-        public Salle(string numero, int etage, int x, int y)
+        public Salle(string numero, int x, int y)
         {
+            if (!int.TryParse(numero, out int num) || num < 100)
+                throw new ArgumentException($"Numéro de salle invalide : '{numero}'. Format attendu : 3 chiffres minimum (ex: 106).");
+
             Numero = numero;
+            int etage = num / 100;                // centaines = étage
+            NumeroLocal = num % 100;              // reste = numéro local
+
             Position = new Position(etage, x, y);
         }
 
-        public override string ToString() => $"Salle {Numero} — Étage {Position.Etage}";
+        public override string ToString() => $"Salle {Numero} (n°{NumeroLocal} — Étage {Position.Etage})";
     }
 
     public class Ascenseur
@@ -211,27 +218,28 @@ namespace NavigationBatiment
             var batiment = new Batiment();
 
             // Ascenseurs (id, colonneX, ligneY, étages desservis)
-            batiment.AjouterAscenseur(new Ascenseur("A1", 3, 0, new List<int> { 0, 1, 2, 3 }));
-            batiment.AjouterAscenseur(new Ascenseur("A2", 8, 0, new List<int> { 0, 1, 2 }));
+            // Convention : 1xx = étage 1, 2xx = étage 2, etc.
+            batiment.AjouterAscenseur(new Ascenseur("A1", 3, 0, new List<int> { 1, 2, 3, 4 }));
+            batiment.AjouterAscenseur(new Ascenseur("A2", 8, 0, new List<int> { 1, 2, 3 }));
 
-            // Salles — Étage 0 (RDC)
-            batiment.AjouterSalle(new Salle("101", 0, 1, 2));
-            batiment.AjouterSalle(new Salle("102", 0, 5, 2));
-            batiment.AjouterSalle(new Salle("103", 0, 9, 4));
-            batiment.AjouterSalle(new Salle("104", 0, 2, 6));
+            // Salles — Étage 1 (1xx)
+            batiment.AjouterSalle(new Salle("101", 1, 2));
+            batiment.AjouterSalle(new Salle("102", 5, 2));
+            batiment.AjouterSalle(new Salle("103", 9, 4));
+            batiment.AjouterSalle(new Salle("104", 2, 6));
 
-            // Salles — Étage 1
-            batiment.AjouterSalle(new Salle("201", 1, 1, 1));
-            batiment.AjouterSalle(new Salle("202", 1, 6, 3));
-            batiment.AjouterSalle(new Salle("203", 1, 9, 5));
+            // Salles — Étage 2 (2xx)
+            batiment.AjouterSalle(new Salle("201", 1, 1));
+            batiment.AjouterSalle(new Salle("202", 6, 3));
+            batiment.AjouterSalle(new Salle("203", 9, 5));
 
-            // Salles — Étage 2
-            batiment.AjouterSalle(new Salle("301", 2, 2, 1));
-            batiment.AjouterSalle(new Salle("302", 2, 7, 4));
+            // Salles — Étage 3 (3xx)
+            batiment.AjouterSalle(new Salle("301", 2, 1));
+            batiment.AjouterSalle(new Salle("302", 7, 4));
 
-            // Salles — Étage 3
-            batiment.AjouterSalle(new Salle("401", 3, 4, 2));
-            batiment.AjouterSalle(new Salle("402", 3, 1, 5));
+            // Salles — Étage 4 (4xx)
+            batiment.AjouterSalle(new Salle("401", 4, 2));
+            batiment.AjouterSalle(new Salle("402", 1, 5));
 
             // ── Navigation ──────────────────────────────────────
             var nav = new Navigateur(batiment);

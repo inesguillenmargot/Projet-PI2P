@@ -4,9 +4,7 @@ using System.Linq;
 
 namespace NavigationBatiment
 {
-    // ─────────────────────────────────────────────
     //  Modèles de données
-    // ─────────────────────────────────────────────
 
     public class Position
     {
@@ -72,9 +70,7 @@ namespace NavigationBatiment
         public override string ToString() => $"Ascenseur {Id} — étages desservis : {string.Join(", ", EtagesDesservis)}";
     }
 
-    // ─────────────────────────────────────────────
     //  Plan du bâtiment
-    // ─────────────────────────────────────────────
 
     public class Batiment
     {
@@ -105,9 +101,7 @@ namespace NavigationBatiment
         }
     }
 
-    // ─────────────────────────────────────────────
     //  Moteur de navigation
-    // ─────────────────────────────────────────────
 
     public class Navigateur
     {
@@ -117,12 +111,13 @@ namespace NavigationBatiment
 
         public void AfficherChemin(string numeroDepart, string numeroArrivee)
         {
+            // Vérification d'abord
+            Salle depart = _batiment.TrouverSalle(numeroDepart);
+            Salle arrivee = _batiment.TrouverSalle(numeroArrivee);
+
             Console.WriteLine(new string('═', 55));
             Console.WriteLine($"  NAVIGATION : {numeroDepart}  →  {numeroArrivee}");
             Console.WriteLine(new string('═', 55));
-
-            Salle depart = _batiment.TrouverSalle(numeroDepart);
-            Salle arrivee = _batiment.TrouverSalle(numeroArrivee);
 
             Console.WriteLine($"  Départ  : {depart}");
             Console.WriteLine($"  Arrivée : {arrivee}");
@@ -130,12 +125,12 @@ namespace NavigationBatiment
 
             if (depart.Position.Etage == arrivee.Position.Etage)
             {
-                // ── Même étage : chemin direct ──────────────────
+                // Même étage : chemin direct
                 CheminMemeEtage(depart.Position, arrivee.Position, $"la salle {arrivee.Numero}");
             }
             else
             {
-                // ── Étages différents : via ascenseur ───────────
+                // Étages différents : via ascenseur
                 Ascenseur ascenseur = _batiment.TrouverAscenseurLePlusProche(
                     depart.Position, arrivee.Position.Etage);
 
@@ -148,19 +143,16 @@ namespace NavigationBatiment
                 Console.WriteLine($"  Ascenseur le plus proche : {ascenseur.Id}");
                 Console.WriteLine();
 
-                // Segment 1 : salle de départ → ascenseur
                 Console.WriteLine($"  ① Depuis la salle {depart.Numero} jusqu'à l'ascenseur {ascenseur.Id}");
                 CheminMemeEtage(depart.Position, posAscenseurDepart,
                     $"l'ascenseur {ascenseur.Id}", "     ");
                 Console.WriteLine($"     Distance : {distAscenseur} porte(s)");
 
-                // Segment 2 : montée / descente
                 Console.WriteLine();
                 string sens = arrivee.Position.Etage > depart.Position.Etage ? "Monter" : "Descendre";
                 Console.WriteLine($"  ② {sens} avec l'ascenseur {ascenseur.Id}");
                 Console.WriteLine($"     Étage {depart.Position.Etage}  →  Étage {arrivee.Position.Etage}");
 
-                // Segment 3 : ascenseur → salle d'arrivée
                 Console.WriteLine();
                 Console.WriteLine($"  ③ Depuis l'ascenseur {ascenseur.Id} jusqu'à la salle {arrivee.Numero}");
                 CheminMemeEtage(posAscenseurArrivee, arrivee.Position,
@@ -206,9 +198,7 @@ namespace NavigationBatiment
         }
     }
 
-    // ─────────────────────────────────────────────
     //  Programme principal — exemple de bâtiment
-    // ─────────────────────────────────────────────
 
     class Program
     {
@@ -224,14 +214,17 @@ namespace NavigationBatiment
 
             // Salles — Étage 1 (1xx)
             batiment.AjouterSalle(new Salle("101", 1, 2));
-            batiment.AjouterSalle(new Salle("102", 5, 2));
-            batiment.AjouterSalle(new Salle("103", 9, 4));
-            batiment.AjouterSalle(new Salle("104", 2, 6));
+            batiment.AjouterSalle(new Salle("102", 2, 2));
+            batiment.AjouterSalle(new Salle("103", 3, 4));
+            batiment.AjouterSalle(new Salle("104", 4, 6));
+            batiment.AjouterSalle(new Salle("105", 5, 6));
 
             // Salles — Étage 2 (2xx)
             batiment.AjouterSalle(new Salle("201", 1, 1));
-            batiment.AjouterSalle(new Salle("202", 6, 3));
-            batiment.AjouterSalle(new Salle("203", 9, 5));
+            batiment.AjouterSalle(new Salle("202", 2, 3));
+            batiment.AjouterSalle(new Salle("203", 3, 5));
+            batiment.AjouterSalle(new Salle("204", 4, 6));
+            batiment.AjouterSalle(new Salle("205", 5, 6));
 
             // Salles — Étage 3 (3xx)
             batiment.AjouterSalle(new Salle("301", 2, 1));

@@ -218,12 +218,6 @@ namespace NavigationBatiment
             Console.WriteLine("Bienvenue sur LeoMaps");
             Console.WriteLine();
 
-            Console.WriteLine("Test automatique :");
-            nav.AfficherChemin("E107", 1, "E207", 2);
-            nav.AfficherChemin("E107", 1, "E112", 1);
-
-            Console.WriteLine("── Mode interactif ──────────────────────────────");
-
             Console.Write("Étage de départ : ");
             int etageDepart = int.Parse(Console.ReadLine()?.Trim() ?? "1");
 

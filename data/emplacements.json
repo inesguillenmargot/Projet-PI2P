@@ -1,298 +1,172 @@
 [
-    {
-        "nom": "E107",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 1,
-        "x": 1,
-        "y": 1
-    },
-    {
-        "nom": "E108",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 1,
-        "x": 1,
-        "y": 2
-    },
-    {
-        "nom": "E109",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 1,
-        "x": 1,
-        "y": 3
-    },
-    {
-        "nom": "E110",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 1,
-        "x": 1,
-        "y": 4
-    },
-    {
-        "nom": "E111",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 1,
-        "x": 1,
-        "y": 5
-    },
-    {
-        "nom": "E112",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 1,
-        "x": 1,
-        "y": 6
-    },
-    {
-        "nom": "Ascenseur gauche",
-        "type": "Ascenseur",
-        "batiment": "E",
-        "etage": 1,
-        "x": 1,
-        "y": 8
-    },
-    {
-        "nom": "Ascenseur droit",
-        "type": "Ascenseur",
-        "batiment": "E",
-        "etage": 1,
-        "x": 9,
-        "y": 8
-    },
-    {
-        "nom": "Escalier gauche",
-        "type": "Escalier",
-        "batiment": "E",
-        "etage": 1,
-        "x": 1,
-        "y": 12
-    },
-    {
-        "nom": "Escalier droit",
-        "type": "Escalier",
-        "batiment": "E",
-        "etage": 1,
-        "x": 9,
-        "y": 12
-    },
-    {
-        "nom": "Toilettes F",
-        "type": "Toilettes",
-        "batiment": "E",
-        "etage": 1,
-        "x": 9,
-        "y": 2
-    },
-    {
-        "nom": "Toilettes H",
-        "type": "Toilettes",
-        "batiment": "E",
-        "etage": 1,
-        "x": 9,
-        "y": 4
-    },
-    {
-        "nom": "Bureau",
-        "type": "Bureau",
-        "batiment": "E",
-        "etage": 1,
-        "x": 9,
-        "y": 6
-    },
-    {
-        "nom": "E207",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 2,
-        "x": 1,
-        "y": 1
-    },
-    {
-        "nom": "E208",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 2,
-        "x": 1,
-        "y": 2
-    },
-    {
-        "nom": "E209",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 2,
-        "x": 1,
-        "y": 3
-    },
-    {
-        "nom": "E210",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 2,
-        "x": 1,
-        "y": 4
-    },
-    {
-        "nom": "E211",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 2,
-        "x": 1,
-        "y": 5
-    },
-    {
-        "nom": "E212",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 2,
-        "x": 1,
-        "y": 6
-    },
-    {
-        "nom": "Ascenseur gauche",
-        "type": "Ascenseur",
-        "batiment": "E",
-        "etage": 2,
-        "x": 1,
-        "y": 8
-    },
-    {
-        "nom": "Ascenseur droit",
-        "type": "Ascenseur",
-        "batiment": "E",
-        "etage": 2,
-        "x": 9,
-        "y": 8
-    },
-    {
-        "nom": "Escalier gauche",
-        "type": "Escalier",
-        "batiment": "E",
-        "etage": 2,
-        "x": 1,
-        "y": 12
-    },
-    {
-        "nom": "Escalier droit",
-        "type": "Escalier",
-        "batiment": "E",
-        "etage": 2,
-        "x": 9,
-        "y": 12
-    },
-    {
-        "nom": "Toilettes F",
-        "type": "Toilettes",
-        "batiment": "E",
-        "etage": 2,
-        "x": 9,
-        "y": 2
-    },
-    {
-        "nom": "Toilettes H",
-        "type": "Toilettes",
-        "batiment": "E",
-        "etage": 2,
-        "x": 9,
-        "y": 4
-    },
-    {
-        "nom": "E307",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 3,
-        "x": 1,
-        "y": 1
-    },
-    {
-        "nom": "E308",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 3,
-        "x": 9,
-        "y": 1
-    },
-    {
-        "nom": "E309",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 3,
-        "x": 9,
-        "y": 4
-    },
-    {
-        "nom": "E344",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 3,
-        "x": 1,
-        "y": 6
-    },
-    {
-        "nom": "E368",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 3,
-        "x": 1,
-        "y": 10
-    },
-    {
-        "nom": "E369",
-        "type": "Salle",
-        "batiment": "E",
-        "etage": 3,
-        "x": 1,
-        "y": 12
-    },
-    {
-        "nom": "Ascenseur gauche",
-        "type": "Ascenseur",
-        "batiment": "E",
-        "etage": 3,
-        "x": 1,
-        "y": 8
-    },
-    {
-        "nom": "Ascenseur droit",
-        "type": "Ascenseur",
-        "batiment": "E",
-        "etage": 3,
-        "x": 9,
-        "y": 8
-    },
-    {
-        "nom": "Escalier gauche",
-        "type": "Escalier",
-        "batiment": "E",
-        "etage": 3,
-        "x": 1,
-        "y": 12
-    },
-    {
-        "nom": "Escalier droit",
-        "type": "Escalier",
-        "batiment": "E",
-        "etage": 3,
-        "x": 9,
-        "y": 12
-    },
-    {
-        "nom": "Toilettes F",
-        "type": "Toilettes",
-        "batiment": "E",
-        "etage": 3,
-        "x": 9,
-        "y": 2
-    },
-    {
-        "nom": "Toilettes H",
-        "type": "Toilettes",
-        "batiment": "E",
-        "etage": 3,
-        "x": 9,
-        "y": 3
-    }
+  { "nom": "E107", "type": "Salle", "batiment": "E", "etage": 1, "x": 1, "y": 1 },
+  { "nom": "E108", "type": "Salle", "batiment": "E", "etage": 1, "x": 1, "y": 2 },
+  { "nom": "E109", "type": "Salle", "batiment": "E", "etage": 1, "x": 1, "y": 3 },
+  { "nom": "E110", "type": "Salle", "batiment": "E", "etage": 1, "x": 1, "y": 4 },
+  { "nom": "E111", "type": "Salle", "batiment": "E", "etage": 1, "x": 1, "y": 5 },
+  { "nom": "E112", "type": "Salle", "batiment": "E", "etage": 1, "x": 1, "y": 6 },
+
+  { "nom": "Bureau gauche", "type": "Bureau", "batiment": "E", "etage": 1, "x": 1, "y": 7 },
+
+  { "nom": "Ascenseur gauche haut", "type": "Ascenseur", "batiment": "E", "etage": 1, "x": 1, "y": 8 },
+
+  { "nom": "E114", "type": "Salle", "batiment": "E", "etage": 1, "x": 1, "y": 9 },
+  { "nom": "E115/116", "type": "Salle", "batiment": "E", "etage": 1, "x": 1, "y": 10 },
+  { "nom": "E163", "type": "Salle", "batiment": "E", "etage": 1, "x": 1, "y": 11 },
+  { "nom": "E162", "type": "Salle", "batiment": "E", "etage": 1, "x": 1, "y": 12 },
+
+  { "nom": "Ascenseur gauche milieu", "type": "Ascenseur", "batiment": "E", "etage": 1, "x": 1, "y": 13 },
+  { "nom": "Espace coworking", "type": "Coworking", "batiment": "E", "etage": 1, "x": 1, "y": 14 },
+  { "nom": "Ascenseur gauche bas", "type": "Ascenseur", "batiment": "E", "etage": 1, "x": 1, "y": 15 },
+  { "nom": "Escalier gauche", "type": "Escalier", "batiment": "E", "etage": 1, "x": 1, "y": 16 },
+
+  { "nom": "E164", "type": "Salle", "batiment": "E", "etage": 1, "x": 1, "y": 17 },
+  { "nom": "E160", "type": "Salle", "batiment": "E", "etage": 1, "x": 1, "y": 18 },
+  { "nom": "E159", "type": "Salle", "batiment": "E", "etage": 1, "x": 1, "y": 19 },
+  { "nom": "E158", "type": "Salle", "batiment": "E", "etage": 1, "x": 1, "y": 20 },
+  { "nom": "E157", "type": "Salle", "batiment": "E", "etage": 1, "x": 1, "y": 21 },
+
+  { "nom": "Escalier bas gauche", "type": "Escalier", "batiment": "E", "etage": 1, "x": 1, "y": 22 },
+
+  { "nom": "E106", "type": "Salle", "batiment": "E", "etage": 1, "x": 9, "y": 1 },
+  { "nom": "E105", "type": "Salle", "batiment": "E", "etage": 1, "x": 9, "y": 2 },
+
+  { "nom": "Toilettes F haut", "type": "Toilettes", "batiment": "E", "etage": 1, "x": 9, "y": 3 },
+  { "nom": "Toilettes H haut", "type": "Toilettes", "batiment": "E", "etage": 1, "x": 9, "y": 4 },
+
+  { "nom": "E103/104", "type": "Salle", "batiment": "E", "etage": 1, "x": 9, "y": 5 },
+  { "nom": "E215", "type": "Salle", "batiment": "E", "etage": 1, "x": 9, "y": 6 },
+
+  { "nom": "Toilettes H milieu", "type": "Toilettes", "batiment": "E", "etage": 1, "x": 9, "y": 7 },
+  { "nom": "Escalier droit haut", "type": "Escalier", "batiment": "E", "etage": 1, "x": 9, "y": 8 },
+
+  { "nom": "Toilettes F milieu", "type": "Toilettes", "batiment": "E", "etage": 1, "x": 9, "y": 9 },
+  { "nom": "Bureau droit", "type": "Bureau", "batiment": "E", "etage": 1, "x": 9, "y": 10 },
+
+  { "nom": "Toilettes F bas", "type": "Toilettes", "batiment": "E", "etage": 1, "x": 9, "y": 11 },
+  { "nom": "E152/153", "type": "Salle", "batiment": "E", "etage": 1, "x": 9, "y": 12 },
+
+  { "nom": "Toilettes H bas", "type": "Toilettes", "batiment": "E", "etage": 1, "x": 9, "y": 13 },
+  { "nom": "E154", "type": "Salle", "batiment": "E", "etage": 1, "x": 9, "y": 14 },
+
+  { "nom": "Toilettes H très bas", "type": "Toilettes", "batiment": "E", "etage": 1, "x": 9, "y": 15 },
+  { "nom": "E155", "type": "Salle", "batiment": "E", "etage": 1, "x": 9, "y": 16 },
+
+  { "nom": "Toilettes F très bas", "type": "Toilettes", "batiment": "E", "etage": 1, "x": 9, "y": 17 },
+  { "nom": "Toilettes F sortie", "type": "Toilettes", "batiment": "E", "etage": 1, "x": 9, "y": 18 },
+  { "nom": "E157 bis", "type": "Salle", "batiment": "E", "etage": 1, "x": 9, "y": 19 },
+
+  { "nom": "E207 gauche", "type": "Salle", "batiment": "E", "etage": 2, "x": 1, "y": 1 },
+  { "nom": "E208", "type": "Salle", "batiment": "E", "etage": 2, "x": 1, "y": 2 },
+  { "nom": "E209", "type": "Salle", "batiment": "E", "etage": 2, "x": 1, "y": 3 },
+  { "nom": "E210", "type": "Salle", "batiment": "E", "etage": 2, "x": 1, "y": 4 },
+  { "nom": "E211", "type": "Salle", "batiment": "E", "etage": 2, "x": 1, "y": 5 },
+  { "nom": "E212", "type": "Salle", "batiment": "E", "etage": 2, "x": 1, "y": 6 },
+  { "nom": "E214 haut", "type": "Salle", "batiment": "E", "etage": 2, "x": 1, "y": 7 },
+  { "nom": "E214 bas", "type": "Salle", "batiment": "E", "etage": 2, "x": 1, "y": 8 },
+
+  { "nom": "Escalier gauche haut", "type": "Escalier", "batiment": "E", "etage": 2, "x": 1, "y": 0 },
+  { "nom": "Escalier gauche milieu haut", "type": "Escalier", "batiment": "E", "etage": 2, "x": 1, "y": 9 },
+  { "nom": "Ascenseur gauche haut", "type": "Ascenseur", "batiment": "E", "etage": 2, "x": 1, "y": 10 },
+  { "nom": "Foyer", "type": "Foyer", "batiment": "E", "etage": 2, "x": 1, "y": 11 },
+  { "nom": "Ascenseurs gauche milieu", "type": "Ascenseur", "batiment": "E", "etage": 2, "x": 1, "y": 12 },
+  { "nom": "Espace coworking", "type": "Coworking", "batiment": "E", "etage": 2, "x": 1, "y": 13 },
+  { "nom": "Ascenseur gauche bas", "type": "Ascenseur", "batiment": "E", "etage": 2, "x": 1, "y": 14 },
+  { "nom": "Escalier gauche bas", "type": "Escalier", "batiment": "E", "etage": 2, "x": 1, "y": 15 },
+
+  { "nom": "E262", "type": "Salle", "batiment": "E", "etage": 2, "x": 1, "y": 16 },
+  { "nom": "E261", "type": "Salle", "batiment": "E", "etage": 2, "x": 1, "y": 17 },
+  { "nom": "E260", "type": "Salle", "batiment": "E", "etage": 2, "x": 1, "y": 18 },
+  { "nom": "E259", "type": "Salle", "batiment": "E", "etage": 2, "x": 1, "y": 19 },
+  { "nom": "E258", "type": "Salle", "batiment": "E", "etage": 2, "x": 1, "y": 20 },
+  { "nom": "Escalier bas gauche", "type": "Escalier", "batiment": "E", "etage": 2, "x": 1, "y": 21 },
+
+  { "nom": "E207 droit", "type": "Salle", "batiment": "E", "etage": 2, "x": 9, "y": 1 },
+  { "nom": "Toilettes F haut", "type": "Toilettes", "batiment": "E", "etage": 2, "x": 9, "y": 2 },
+  { "nom": "Toilettes H haut", "type": "Toilettes", "batiment": "E", "etage": 2, "x": 9, "y": 3 },
+  { "nom": "E206/207", "type": "Salle", "batiment": "E", "etage": 2, "x": 9, "y": 4 },
+  { "nom": "E205", "type": "Salle", "batiment": "E", "etage": 2, "x": 9, "y": 5 },
+  { "nom": "Toilettes H milieu haut", "type": "Toilettes", "batiment": "E", "etage": 2, "x": 9, "y": 6 },
+  { "nom": "E203/205", "type": "Salle", "batiment": "E", "etage": 2, "x": 9, "y": 7 },
+  { "nom": "E215", "type": "Salle", "batiment": "E", "etage": 2, "x": 9, "y": 8 },
+
+  { "nom": "Toilettes H milieu", "type": "Toilettes", "batiment": "E", "etage": 2, "x": 9, "y": 9 },
+  { "nom": "Escalier droit milieu", "type": "Escalier", "batiment": "E", "etage": 2, "x": 9, "y": 10 },
+  { "nom": "Toilettes F milieu", "type": "Toilettes", "batiment": "E", "etage": 2, "x": 9, "y": 11 },
+  { "nom": "Bureau droit", "type": "Bureau", "batiment": "E", "etage": 2, "x": 9, "y": 12 },
+
+  { "nom": "Toilettes F bas", "type": "Toilettes", "batiment": "E", "etage": 2, "x": 9, "y": 13 },
+  { "nom": "E253", "type": "Salle", "batiment": "E", "etage": 2, "x": 9, "y": 14 },
+  { "nom": "Toilettes H bas", "type": "Toilettes", "batiment": "E", "etage": 2, "x": 9, "y": 15 },
+  { "nom": "E254", "type": "Salle", "batiment": "E", "etage": 2, "x": 9, "y": 16 },
+  { "nom": "E256", "type": "Salle", "batiment": "E", "etage": 2, "x": 9, "y": 17 },
+  { "nom": "Toilettes H très bas", "type": "Toilettes", "batiment": "E", "etage": 2, "x": 9, "y": 18 },
+  { "nom": "Toilettes F très bas", "type": "Toilettes", "batiment": "E", "etage": 2, "x": 9, "y": 19 },
+  { "nom": "E257", "type": "Salle", "batiment": "E", "etage": 2, "x": 9, "y": 20 },
+
+  { "nom": "Escalier gauche haut", "type": "Escalier", "batiment": "E", "etage": 3, "x": 1, "y": 0 },
+  { "nom": "E307 haut", "type": "Salle", "batiment": "E", "etage": 3, "x": 1, "y": 1 },
+  { "nom": "E307 bas", "type": "Salle", "batiment": "E", "etage": 3, "x": 1, "y": 2 },
+  { "nom": "E306", "type": "Salle", "batiment": "E", "etage": 3, "x": 1, "y": 3 },
+
+  { "nom": "Ascenseur gauche haut", "type": "Ascenseur", "batiment": "E", "etage": 3, "x": 1, "y": 4 },
+  { "nom": "Espace coworking", "type": "Coworking", "batiment": "E", "etage": 3, "x": 1, "y": 5 },
+
+  { "nom": "E309 gauche haut", "type": "Salle", "batiment": "E", "etage": 3, "x": 1, "y": 6 },
+  { "nom": "E309 gauche bas", "type": "Salle", "batiment": "E", "etage": 3, "x": 1, "y": 7 },
+  { "nom": "E344 haut", "type": "Salle", "batiment": "E", "etage": 3, "x": 1, "y": 8 },
+  { "nom": "E344 bas", "type": "Salle", "batiment": "E", "etage": 3, "x": 1, "y": 9 },
+
+  { "nom": "Bureau gauche", "type": "Bureau", "batiment": "E", "etage": 3, "x": 1, "y": 10 },
+  { "nom": "Ascenseur gauche milieu", "type": "Ascenseur", "batiment": "E", "etage": 3, "x": 1, "y": 11 },
+
+  { "nom": "E368", "type": "Salle", "batiment": "E", "etage": 3, "x": 1, "y": 12 },
+  { "nom": "E367A", "type": "Salle", "batiment": "E", "etage": 3, "x": 1, "y": 13 },
+  { "nom": "E367B", "type": "Salle", "batiment": "E", "etage": 3, "x": 1, "y": 14 },
+  { "nom": "E369 gauche", "type": "Salle", "batiment": "E", "etage": 3, "x": 1, "y": 15 },
+
+  { "nom": "Escalier gauche bas", "type": "Escalier", "batiment": "E", "etage": 3, "x": 1, "y": 16 },
+
+  { "nom": "E308", "type": "Salle", "batiment": "E", "etage": 3, "x": 9, "y": 1 },
+  { "nom": "Toilettes F haut", "type": "Toilettes", "batiment": "E", "etage": 3, "x": 9, "y": 2 },
+  { "nom": "Toilettes H haut", "type": "Toilettes", "batiment": "E", "etage": 3, "x": 9, "y": 3 },
+
+  { "nom": "E309 droit haut", "type": "Salle", "batiment": "E", "etage": 3, "x": 9, "y": 4 },
+  { "nom": "E309 droit bas", "type": "Salle", "batiment": "E", "etage": 3, "x": 9, "y": 5 },
+
+  { "nom": "Ascenseurs droit haut", "type": "Ascenseur", "batiment": "E", "etage": 3, "x": 9, "y": 6 },
+
+  { "nom": "Bureau droit haut", "type": "Bureau", "batiment": "E", "etage": 3, "x": 9, "y": 7 },
+  { "nom": "Bureau droit milieu", "type": "Bureau", "batiment": "E", "etage": 3, "x": 9, "y": 8 },
+  { "nom": "Bureau droit bas", "type": "Bureau", "batiment": "E", "etage": 3, "x": 9, "y": 9 },
+
+  { "nom": "Ascenseurs droit milieu", "type": "Ascenseur", "batiment": "E", "etage": 3, "x": 9, "y": 10 },
+
+  { "nom": "Toilettes H milieu", "type": "Toilettes", "batiment": "E", "etage": 3, "x": 9, "y": 11 },
+  { "nom": "Toilettes F milieu", "type": "Toilettes", "batiment": "E", "etage": 3, "x": 9, "y": 12 },
+
+  { "nom": "E363", "type": "Salle", "batiment": "E", "etage": 3, "x": 9, "y": 13 },
+  { "nom": "Toilettes H bas", "type": "Toilettes", "batiment": "E", "etage": 3, "x": 9, "y": 14 },
+  { "nom": "E364", "type": "Salle", "batiment": "E", "etage": 3, "x": 9, "y": 15 },
+  { "nom": "E360", "type": "Salle", "batiment": "E", "etage": 3, "x": 9, "y": 16 },
+  { "nom": "E369 droit", "type": "Salle", "batiment": "E", "etage": 3, "x": 9, "y": 17 },
+
+  { "nom": "Rue basse", "type": "Exterieur", "batiment": "Campus", "etage": -1, "x": 5, "y": 20 },
+  { "nom": "Rue haute", "type": "Exterieur", "batiment": "Campus", "etage": 0, "x": 5, "y": 0 },
+  { "nom": "Entrée bâtiment L", "type": "Entree", "batiment": "L", "etage": 0, "x": 5, "y": 5 },
+  { "nom": "Foyer étudiant", "type": "Foyer", "batiment": "E", "etage": 0, "x": 5, "y": 10 },
+  { "nom": "Accueil du pôle", "type": "Accueil", "batiment": "Pole", "etage": 0, "x": 5, "y": -5 },
+  { "nom": "Escalator accueil", "type": "Escalator", "batiment": "Campus", "etage": 0, "x": 5, "y": 2 },
+
+  { "nom": "Ascenseur gauche haut", "type": "Ascenseur", "batiment": "E", "etage": -1, "x": 1, "y": 4 },
+  { "nom": "Ascenseur gauche milieu", "type": "Ascenseur", "batiment": "E", "etage": -1, "x": 1, "y": 11 },
+  { "nom": "Ascenseur gauche bas", "type": "Ascenseur", "batiment": "E", "etage": -1, "x": 1, "y": 15 },
+  { "nom": "Ascenseurs droit haut", "type": "Ascenseur", "batiment": "E", "etage": -1, "x": 9, "y": 6 },
+  { "nom": "Ascenseurs droit milieu", "type": "Ascenseur", "batiment": "E", "etage": -1, "x": 9, "y": 10 },
+
+  { "nom": "Ascenseur gauche haut", "type": "Ascenseur", "batiment": "E", "etage": 0, "x": 1, "y": 4 },
+  { "nom": "Ascenseur gauche milieu", "type": "Ascenseur", "batiment": "E", "etage": 0, "x": 1, "y": 11 },
+  { "nom": "Ascenseur gauche bas", "type": "Ascenseur", "batiment": "E", "etage": 0, "x": 1, "y": 15 },
+  { "nom": "Ascenseurs droit haut", "type": "Ascenseur", "batiment": "E", "etage": 0, "x": 9, "y": 6 },
+  { "nom": "Ascenseurs droit milieu", "type": "Ascenseur", "batiment": "E", "etage": 0, "x": 9, "y": 10 }
 ]

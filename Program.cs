@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Text.Json;
 
 namespace NavigationBatiment
 {
-    //  Modèles de données
-
     public class Position
     {
         public int Etage { get; set; }
-        public int X { get; set; }   // colonne (position horizontale)
-        public int Y { get; set; }   // ligne   (position verticale)
+        public int X { get; set; }
+        public int Y { get; set; }
 
         public Position(int etage, int x, int y)
         {
@@ -19,157 +19,148 @@ namespace NavigationBatiment
             Y = y;
         }
 
-        // Distance de Manhattan (même étage)
         public int DistanceManhattan(Position autre)
             => Math.Abs(X - autre.X) + Math.Abs(Y - autre.Y);
 
-        public override string ToString() => $"(étage {Etage}, colonne {X}, ligne {Y})";
+        public override string ToString()
+            => $"(étage {Etage}, colonne {X}, ligne {Y})";
     }
 
-    public class Salle
+    public class Emplacement
     {
-        public string Numero { get; set; }
-        public int NumeroLocal { get; set; }   // numéro sans l'étage (ex: 6 pour "106")
-        public Position Position { get; set; }
-
-        public Salle(string numero, int x, int y)
-        {
-            if (!int.TryParse(numero, out int num) || num < 100)
-                throw new ArgumentException($"Numéro de salle invalide : '{numero}'. Format attendu : 3 chiffres minimum (ex: 106).");
-
-            Numero = numero;
-            int etage = num / 100;                // centaines = étage
-            NumeroLocal = num % 100;              // reste = numéro local
-
-            Position = new Position(etage, x, y);
-        }
-
-        public override string ToString() => $"Salle {Numero} (n°{NumeroLocal} — Étage {Position.Etage})";
-    }
-
-    public class Ascenseur
-    {
-        public string Id { get; set; }
-        // Un ascenseur a la même position X,Y sur tous les étages
+        public string Nom { get; set; } = "";
+        public string Type { get; set; } = "";
+        public string Batiment { get; set; } = "";
+        public int Etage { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
-        public List<int> EtagesDesservis { get; set; }
 
-        public Ascenseur(string id, int x, int y, List<int> etagesDesservis)
-        {
-            Id = id;
-            X = x;
-            Y = y;
-            EtagesDesservis = etagesDesservis;
-        }
+        public Position Position => new Position(Etage, X, Y);
 
-        public Position PositionEtage(int etage) => new Position(etage, X, Y);
-
-        public bool DesssertEtage(int etage) => EtagesDesservis.Contains(etage);
-
-        public override string ToString() => $"Ascenseur {Id} — étages desservis : {string.Join(", ", EtagesDesservis)}";
+        public override string ToString()
+            => $"{Nom} ({Type}, bâtiment {Batiment}, étage {Etage})";
     }
-
-    //  Plan du bâtiment
 
     public class Batiment
     {
-        private readonly Dictionary<string, Salle> _salles = new();
-        private readonly List<Ascenseur> _ascenseurs = new();
+        private readonly List<Emplacement> _emplacements = new();
 
-        public void AjouterSalle(Salle salle) => _salles[salle.Numero] = salle;
-        public void AjouterAscenseur(Ascenseur ascenseur) => _ascenseurs.Add(ascenseur);
-
-        public Salle TrouverSalle(string numero)
+        public Batiment(List<Emplacement> emplacements)
         {
-            if (_salles.TryGetValue(numero, out var salle)) return salle;
-            throw new ArgumentException($"Salle '{numero}' introuvable.");
+            _emplacements = emplacements;
         }
 
-        /// <summary>
-        /// Trouve l'ascenseur le plus proche d'une position donnée
-        /// qui dessert les deux étages nécessaires.
-        /// </summary>
-        public Ascenseur TrouverAscenseurLePlusProche(Position depuis, int etageDestination)
+        public Emplacement TrouverEmplacement(string nom, int? etage = null)
         {
-            return _ascenseurs
-                .Where(a => a.DesssertEtage(depuis.Etage) && a.DesssertEtage(etageDestination))
-                .OrderBy(a => depuis.DistanceManhattan(a.PositionEtage(depuis.Etage)))
+            var recherche = _emplacements
+                .Where(e => e.Nom.Equals(nom, StringComparison.OrdinalIgnoreCase));
+
+            if (etage.HasValue)
+                recherche = recherche.Where(e => e.Etage == etage.Value);
+
+            return recherche.FirstOrDefault()
+                ?? throw new ArgumentException($"Emplacement '{nom}' introuvable.");
+        }
+
+        public List<Emplacement> ListerParEtage(string batiment, int etage)
+        {
+            return _emplacements
+                .Where(e => e.Batiment.Equals(batiment, StringComparison.OrdinalIgnoreCase)
+                         && e.Etage == etage)
+                .OrderBy(e => e.Type)
+                .ThenBy(e => e.Nom)
+                .ToList();
+        }
+
+        public Emplacement TrouverAscenseurLePlusProche(Position depuis, int etageDestination)
+        {
+            return _emplacements
+                .Where(e => e.Type.Equals("Ascenseur", StringComparison.OrdinalIgnoreCase)
+                         && e.Etage == depuis.Etage)
+                .OrderBy(e => depuis.DistanceManhattan(e.Position))
+                .FirstOrDefault()
+                ?? throw new InvalidOperationException($"Aucun ascenseur trouvé à l'étage {depuis.Etage}.");
+        }
+
+        public Emplacement TrouverAscenseurEquivalent(Emplacement ascenseurDepart, int etageDestination)
+        {
+            return _emplacements
+                .Where(e => e.Type.Equals("Ascenseur", StringComparison.OrdinalIgnoreCase)
+                         && e.Etage == etageDestination
+                         && e.Nom.Equals(ascenseurDepart.Nom, StringComparison.OrdinalIgnoreCase))
                 .FirstOrDefault()
                 ?? throw new InvalidOperationException(
-                    $"Aucun ascenseur ne relie l'étage {depuis.Etage} à l'étage {etageDestination}.");
+                    $"L'ascenseur {ascenseurDepart.Nom} n'existe pas à l'étage {etageDestination}.");
         }
     }
-
-    //  Moteur de navigation
 
     public class Navigateur
     {
         private readonly Batiment _batiment;
 
-        public Navigateur(Batiment batiment) => _batiment = batiment;
-
-        public void AfficherChemin(string numeroDepart, string numeroArrivee)
+        public Navigateur(Batiment batiment)
         {
-            // Vérification d'abord
-            Salle depart = _batiment.TrouverSalle(numeroDepart);
-            Salle arrivee = _batiment.TrouverSalle(numeroArrivee);
+            _batiment = batiment;
+        }
 
-            Console.WriteLine(new string('═', 55));
-            Console.WriteLine($"  NAVIGATION : {numeroDepart}  →  {numeroArrivee}");
-            Console.WriteLine(new string('═', 55));
+        public void AfficherChemin(string nomDepart, int? etageDepart, string nomArrivee, int? etageArrivee)
+        {
+            Emplacement depart = _batiment.TrouverEmplacement(nomDepart, etageDepart);
+            Emplacement arrivee = _batiment.TrouverEmplacement(nomArrivee, etageArrivee);
+
+            Console.WriteLine(new string('═', 60));
+            Console.WriteLine($"  NAVIGATION : {depart.Nom} → {arrivee.Nom}");
+            Console.WriteLine(new string('═', 60));
 
             Console.WriteLine($"  Départ  : {depart}");
             Console.WriteLine($"  Arrivée : {arrivee}");
-            Console.WriteLine(new string('─', 55));
+            Console.WriteLine(new string('─', 60));
 
             if (depart.Position.Etage == arrivee.Position.Etage)
             {
-                // Même étage : chemin direct
-                CheminMemeEtage(depart.Position, arrivee.Position, $"la salle {arrivee.Numero}");
+                CheminMemeEtage(depart.Position, arrivee.Position, arrivee.Nom);
             }
             else
             {
-                // Étages différents : via ascenseur
-                Ascenseur ascenseur = _batiment.TrouverAscenseurLePlusProche(
-                    depart.Position, arrivee.Position.Etage);
+                Emplacement ascenseurDepart = _batiment.TrouverAscenseurLePlusProche(
+                    depart.Position,
+                    arrivee.Position.Etage
+                );
 
-                Position posAscenseurDepart = ascenseur.PositionEtage(depart.Position.Etage);
-                Position posAscenseurArrivee = ascenseur.PositionEtage(arrivee.Position.Etage);
+                Emplacement ascenseurArrivee = _batiment.TrouverAscenseurEquivalent(
+                    ascenseurDepart,
+                    arrivee.Position.Etage
+                );
 
-                int distAscenseur = depart.Position.DistanceManhattan(posAscenseurDepart);
-                int distFinale = posAscenseurArrivee.DistanceManhattan(arrivee.Position);
+                int distAscenseur = depart.Position.DistanceManhattan(ascenseurDepart.Position);
+                int distFinale = ascenseurArrivee.Position.DistanceManhattan(arrivee.Position);
 
-                Console.WriteLine($"  Ascenseur le plus proche : {ascenseur.Id}");
+                Console.WriteLine($"  Ascenseur choisi : {ascenseurDepart.Nom}");
                 Console.WriteLine();
 
-                Console.WriteLine($"  ① Depuis la salle {depart.Numero} jusqu'à l'ascenseur {ascenseur.Id}");
-                CheminMemeEtage(depart.Position, posAscenseurDepart,
-                    $"l'ascenseur {ascenseur.Id}", "     ");
+                Console.WriteLine($"  ① Depuis {depart.Nom} jusqu'à {ascenseurDepart.Nom}");
+                CheminMemeEtage(depart.Position, ascenseurDepart.Position, ascenseurDepart.Nom, "     ");
                 Console.WriteLine($"     Distance : {distAscenseur} porte(s)");
 
                 Console.WriteLine();
-                string sens = arrivee.Position.Etage > depart.Position.Etage ? "Monter" : "Descendre";
-                Console.WriteLine($"  ② {sens} avec l'ascenseur {ascenseur.Id}");
-                Console.WriteLine($"     Étage {depart.Position.Etage}  →  Étage {arrivee.Position.Etage}");
+                string sens = arrivee.Etage > depart.Etage ? "Monter" : "Descendre";
+                Console.WriteLine($"  ② {sens} avec {ascenseurDepart.Nom}");
+                Console.WriteLine($"     Étage {depart.Etage} → Étage {arrivee.Etage}");
 
                 Console.WriteLine();
-                Console.WriteLine($"  ③ Depuis l'ascenseur {ascenseur.Id} jusqu'à la salle {arrivee.Numero}");
-                CheminMemeEtage(posAscenseurArrivee, arrivee.Position,
-                    $"la salle {arrivee.Numero}", "     ");
+                Console.WriteLine($"  ③ Depuis {ascenseurArrivee.Nom} jusqu'à {arrivee.Nom}");
+                CheminMemeEtage(ascenseurArrivee.Position, arrivee.Position, arrivee.Nom, "     ");
                 Console.WriteLine($"     Distance : {distFinale} porte(s)");
 
                 Console.WriteLine();
                 Console.WriteLine($"  Distance totale estimée : {distAscenseur + distFinale} porte(s)");
             }
 
-            Console.WriteLine(new string('═', 55));
+            Console.WriteLine(new string('═', 60));
             Console.WriteLine();
         }
 
-        // ── Génère les instructions directionnelles entre deux points ──
-        private static void CheminMemeEtage(
-            Position depuis, Position vers, string nomDestination, string indent = "  ")
+        private static void CheminMemeEtage(Position depuis, Position vers, string nomDestination, string indent = "  ")
         {
             int dx = vers.X - depuis.X;
             int dy = vers.Y - depuis.Y;
@@ -190,7 +181,7 @@ namespace NavigationBatiment
 
             if (dy != 0)
             {
-                string direction = dy > 0 ? "bas (sud)" : "haut (nord)";
+                string direction = dy > 0 ? "bas" : "haut";
                 Console.WriteLine($"{indent}  • Allez vers le {direction} ({Math.Abs(dy)} porte(s))");
             }
 
@@ -198,64 +189,56 @@ namespace NavigationBatiment
         }
     }
 
-    //  Programme principal — exemple de bâtiment
-
     class Program
     {
         static void Main(string[] args)
         {
-            // ── Construction du bâtiment ────────────────────────
-            var batiment = new Batiment();
+            string cheminJson = Path.Combine(AppContext.BaseDirectory, "data", "emplacements.json");
 
-            // Ascenseurs (id, colonneX, ligneY, étages desservis)
-            // Convention : 1xx = étage 1, 2xx = étage 2, etc.
-            batiment.AjouterAscenseur(new Ascenseur("A1", 3, 0, new List<int> { 1, 2, 3, 4 }));
-            batiment.AjouterAscenseur(new Ascenseur("A2", 8, 0, new List<int> { 1, 2, 3 }));
+            if (!File.Exists(cheminJson))
+            {
+                Console.WriteLine($"Fichier JSON introuvable : {cheminJson}");
+                return;
+            }
 
-            // Salles — Étage 1 (1xx)
-            batiment.AjouterSalle(new Salle("101", 1, 2));
-            batiment.AjouterSalle(new Salle("102", 2, 2));
-            batiment.AjouterSalle(new Salle("103", 3, 4));
-            batiment.AjouterSalle(new Salle("104", 4, 6));
-            batiment.AjouterSalle(new Salle("105", 5, 6));
+            string json = File.ReadAllText(cheminJson);
 
-            // Salles — Étage 2 (2xx)
-            batiment.AjouterSalle(new Salle("201", 1, 1));
-            batiment.AjouterSalle(new Salle("202", 2, 3));
-            batiment.AjouterSalle(new Salle("203", 3, 5));
-            batiment.AjouterSalle(new Salle("204", 4, 6));
-            batiment.AjouterSalle(new Salle("205", 5, 6));
+            var options = new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            };
 
-            // Salles — Étage 3 (3xx)
-            batiment.AjouterSalle(new Salle("301", 2, 1));
-            batiment.AjouterSalle(new Salle("302", 7, 4));
+            List<Emplacement> emplacements =
+                JsonSerializer.Deserialize<List<Emplacement>>(json, options)
+                ?? new List<Emplacement>();
 
-            // Salles — Étage 4 (4xx)
-            batiment.AjouterSalle(new Salle("401", 4, 2));
-            batiment.AjouterSalle(new Salle("402", 1, 5));
-
-            // ── Navigation ──────────────────────────────────────
+            var batiment = new Batiment(emplacements);
             var nav = new Navigateur(batiment);
 
-            // Cas 1 : même étage
-            nav.AfficherChemin("101", "103");
+            Console.WriteLine("Bienvenue sur LeoMaps");
+            Console.WriteLine();
 
-            // Cas 2 : étages différents
-            nav.AfficherChemin("101", "202");
+            Console.WriteLine("Test automatique :");
+            nav.AfficherChemin("E107", 1, "E207", 2);
+            nav.AfficherChemin("E107", 1, "E112", 1);
 
-            // Cas 3 : plusieurs étages d'écart
-            nav.AfficherChemin("102", "401");
-
-            // ── Mode interactif ─────────────────────────────────
             Console.WriteLine("── Mode interactif ──────────────────────────────");
-            Console.Write("Numéro de salle de départ : ");
-            string dep = Console.ReadLine()?.Trim() ?? "";
-            Console.Write("Numéro de salle d'arrivée : ");
-            string arr = Console.ReadLine()?.Trim() ?? "";
+
+            Console.Write("Étage de départ : ");
+            int etageDepart = int.Parse(Console.ReadLine()?.Trim() ?? "1");
+
+            Console.Write("Emplacement de départ : ");
+            string depart = Console.ReadLine()?.Trim() ?? "";
+
+            Console.Write("Étage d'arrivée : ");
+            int etageArrivee = int.Parse(Console.ReadLine()?.Trim() ?? "1");
+
+            Console.Write("Emplacement d'arrivée : ");
+            string arrivee = Console.ReadLine()?.Trim() ?? "";
 
             try
             {
-                nav.AfficherChemin(dep, arr);
+                nav.AfficherChemin(depart, etageDepart, arrivee, etageArrivee);
             }
             catch (Exception ex)
             {
